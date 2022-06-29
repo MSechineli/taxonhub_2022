@@ -9,7 +9,7 @@
   "labelImportingFile": "Arquivo importado",
   "titleWarningModal": "Aviso",
   "titleErrorModal": "Erro",
-  "titleSuccessModal": "Exportar arquivo",
+  "titleSuccessModal": "Sucesso",
   "titleImportFileModal": "Importar arquivo",
   "msgWarningModal": "Deseja mesmo cancelar a importação do arquivo?",
   "msgErrorFileType": "O arquivo selecionado não é do tipo CSV.",

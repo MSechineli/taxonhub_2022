@@ -38,12 +38,6 @@ class ModalSuccess extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            ButtonModal(
-              title: context.T.titleSuccessModal,
-              iconData: IconsApp.download,
-              color: ColorsApp.fileButton,
-              onPressed: onPressedExportFile,
-            ),
           ],
         ),
       ),
