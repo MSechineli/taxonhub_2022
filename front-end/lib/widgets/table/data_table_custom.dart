@@ -70,7 +70,7 @@ class DataTableCustom extends StatelessWidget {
               ),
               alignment: Alignment.bottomRight,
               child: ButtonModal(
-                title: context.T.titleSuccessModal,
+                title: context.T.titleExportFileModal,
                 iconData: IconsApp.download,
                 color: ColorsApp.fileButton,
                 onPressed: onPressed,

@@ -11,6 +11,7 @@
   "titleErrorModal": "Erro",
   "titleSuccessModal": "Sucesso",
   "titleImportFileModal": "Importar arquivo",
+  "titleExportFileModal": "Exportar arquivo",
   "msgWarningModal": "Deseja mesmo cancelar a importação do arquivo?",
   "msgErrorFileType": "O arquivo selecionado não é do tipo CSV.",
   "msgSuccessModal": "A busca foi realizada com sucesso.",
