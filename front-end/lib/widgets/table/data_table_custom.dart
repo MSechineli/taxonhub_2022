@@ -48,11 +48,13 @@ class DataTableCustom extends StatelessWidget {
                 child: LayoutBuilder(
                   builder: (context, constraint) {
                     return Center(
-                      child: ScrollableRowsTable(
-                        columns: columns,
-                        rowsCells: rowsCells,
-                        maxHeight: constraint.maxHeight,
-                        maxWidth: constraint.maxWidth,
+                      child: SingleChildScrollView(
+                        child: ScrollableRowsTable(
+                          columns: columns,
+                          rowsCells: rowsCells,
+                          maxHeight: constraint.maxHeight,
+                          maxWidth: constraint.maxWidth,
+                        ),
                       ),
                     );
                   },
