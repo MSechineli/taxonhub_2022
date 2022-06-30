@@ -4,9 +4,11 @@ import { ParserCSV } from '../Services/MulterParser'
 import { OutputParser } from '../Services/OutputParser'
 import { SpeciesLink } from '../Services/SpeciesLink'
 import { Formatters } from '../Utils/Formatters'
+import { Logger } from '../Logger/Logger'
 
 export class Controller {
   async buscaFloraDoBrasil(req: Request, res: Response) {
+    const logger = new Logger().logger();
     const parserCSV = new ParserCSV()
     const floraDoBrasil = new FloraDoBrasil()
     const outputParser = new OutputParser()
@@ -21,8 +23,11 @@ export class Controller {
 
       const parsedData = outputParser.parseOutputFloraDoBrasil(jsonFormatted)
 
+      logger.info('Dados do Flora do Brasil em formato JSON gerado com sucesso');
+
       return res.status(200).send({ data: parsedData })
     } catch (err) {
+      logger.error('Erro ao gerar dados do Flora do Brasil em formato JSON');
       return res.status(400).send({ erro: 'Erro inesperado' })
     }
   }
