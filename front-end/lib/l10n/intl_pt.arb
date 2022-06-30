@@ -11,10 +11,20 @@
   "titleErrorModal": "Erro",
   "titleSuccessModal": "Sucesso",
   "titleImportFileModal": "Importar arquivo",
+  "titleExportFileModal": "Exportar arquivo",
   "msgWarningModal": "Deseja mesmo cancelar a importação do arquivo?",
   "msgErrorFileType": "O arquivo selecionado não é do tipo CSV.",
   "msgSuccessModal": "A busca foi realizada com sucesso.",
   "labelButtonSearchOccurrence": "Busca de Ocorrências",
   "labelButtonTaxonomicSearch": "Busca Taxonômica",
-  "labelUnexpectedError": "Ocorreu um erro inesperado. Tente novamente!"
+  "labelUnexpectedError": "Ocorreu um erro inesperado. Tente novamente!",
+  "titleResultTaxonomicSearch": "Resultado da Busca Taxonômica",
+  "titleResultSearchOccurrence": "Resultado da Busca de Ocorrências",
+  "msgErrorBadRequest": "Solicitação inválida.",
+  "msgErrorNotFound": "Recurso não encontrado.",
+  "msgErrorConnectionError": "Falha na conexão. Tente Novamente!",
+  "msgErrorForbidden": "Acesso não autorizado para este recurso.",
+  "msgErrorUnauthorizedAccess": "Acesso não autorizado para este recurso.",
+  "msgErrorUnexpectedError": "Erro inesperado. Tente Novamente!",
+  "backInitial": "Tela Inicial"
 }

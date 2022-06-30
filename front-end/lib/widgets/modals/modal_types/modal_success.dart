@@ -45,8 +45,8 @@ class ModalSuccess extends StatelessWidget {
         spacing: 15,
         children: [
           ButtonModal(
-            title: context.T.labelBack,
-            color: ColorsApp.error,
+            title: context.T.labelOK,
+            color: ColorsApp.confirmButton,
             onPressed: onPressedBack,
           ),
         ],

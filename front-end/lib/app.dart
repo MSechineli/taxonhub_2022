@@ -1,9 +1,15 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front_end/bloc/searchs/searchs_bloc.dart';
+import 'package:front_end/providers/occurrence.dart';
+import 'package:front_end/providers/taxonomic.dart';
 import 'package:front_end/routes/routes.dart';
 import 'package:front_end/screens/home/home.dart';
 import 'package:front_end/screens/main.dart';
+import 'package:front_end/screens/occurrences_search/occurrences_search.dart';
+import 'package:front_end/screens/taxonomic_search/taxonomic_search.dart';
+import 'package:provider/provider.dart';
 import 'package:vrouter/vrouter.dart';
 import 'package:front_end/utils/extensions.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -13,7 +19,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const AppTaxonHub();
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => TaxonomicProvider()),
+        ChangeNotifierProvider(create: (_) => OcurrenceProvider()),
+        BlocProvider<SearchsBloc>(
+          create: (context) => SearchsBloc(),
+        ),
+      ],
+      child: const AppTaxonHub(),
+    );
   }
 }
 
@@ -27,35 +42,46 @@ class AppTaxonHub extends StatefulWidget {
 class _AppTaxonHubState extends State<AppTaxonHub> {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<SearchsBloc>(
-          create: (context) => SearchsBloc(),
+    return VRouter(
+      buildTransition: (animation, _, child) => FadeTransition(
+        opacity: animation,
+        child: child,
+      ),
+      scrollBehavior: ScrollBehaviorCustom(),
+      debugShowCheckedModeBanner: false,
+      transitionDuration: const Duration(milliseconds: 50),
+      onGenerateTitle: (context) => context.T.title,
+      localizationsDelegates: T.localizationsDelegates,
+      supportedLocales: T.supportedLocales,
+      routes: [
+        VNester(
+          path: RoutesApp.home,
+          widgetBuilder: (child) => Main(child: child),
+          nestedRoutes: [
+            VWidget(
+              path: null,
+              widget: const HomePage(),
+            ),
+            VWidget(
+              path: RoutesApp.taxonomicSearch,
+              widget: const TaxonomicSearch(),
+            ),
+            VWidget(
+              path: RoutesApp.occurrencesSearch,
+              widget: const OccurrencesSearch(),
+            ),
+          ],
         ),
       ],
-      child: VRouter(
-        buildTransition: (animation, _, child) => FadeTransition(
-          opacity: animation,
-          child: child,
-        ),
-        debugShowCheckedModeBanner: false,
-        transitionDuration: const Duration(milliseconds: 50),
-        onGenerateTitle: (context) => context.T.title,
-        localizationsDelegates: T.localizationsDelegates,
-        supportedLocales: T.supportedLocales,
-        routes: [
-          VNester(
-            path: RoutesApp.main,
-            widgetBuilder: (child) => Main(child: child),
-            nestedRoutes: [
-              VWidget(
-                path: RoutesApp.home,
-                widget: const HomePage(),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
+}
+
+class ScrollBehaviorCustom extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }

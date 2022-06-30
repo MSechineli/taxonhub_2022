@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front_end/bloc/searchs/searchs_bloc.dart';
 import 'package:front_end/colors/colors.dart';
+import 'package:front_end/providers/occurrence.dart';
+import 'package:front_end/providers/taxonomic.dart';
+import 'package:front_end/routes/routes.dart';
 import 'package:front_end/utils/enums.dart';
 import 'package:front_end/utils/extensions.dart';
 import 'package:front_end/widgets/buttons/button_search.dart';
@@ -11,6 +14,7 @@ import 'package:front_end/widgets/modals/modal_types/modal_import_file.dart';
 import 'package:front_end/widgets/modals/modal_types/modal_success.dart';
 import 'package:front_end/widgets/modals/modal_types/modal_warning.dart';
 import 'package:vrouter/vrouter.dart';
+import 'package:front_end/utils/errors/capture_default_errors.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, this.child}) : super(key: key);
@@ -110,6 +114,25 @@ class _HomePageState extends State<HomePage> {
                           const SearchsEvent.reset(),
                         );
                     context.vRouter.pop();
+
+                    switch (searchType) {
+                      case SearchType.occurrence:
+                        context
+                            .read<OcurrenceProvider>()
+                            .setOccurences(occurrenceList);
+                        context.vRouter.to(
+                          RoutesApp.occurrencesSearch,
+                        );
+                        break;
+                      case SearchType.taxonomic:
+                        context
+                            .read<TaxonomicProvider>()
+                            .setTaxonomics(taxonomicList);
+                        context.vRouter.to(
+                          RoutesApp.taxonomicSearch,
+                        );
+                        break;
+                    }
                   },
                   onPressedExportFile: () {
                     context.read<SearchsBloc>().add(
@@ -168,7 +191,7 @@ class _HomePageState extends State<HomePage> {
                         );
                     context.vRouter.pop();
                   },
-                  message: context.T.labelUnexpectedError,
+                  message: err.defaultErrortoString(context),
                 );
               },
             ),
