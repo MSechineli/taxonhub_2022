@@ -47,7 +47,7 @@ class _TaxonomicSearchState extends State<TaxonomicSearch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarSearchCustom(),
+      appBar: const AppBarSearchCustom(),
       backgroundColor: Colors.transparent,
       body: DataTableCustom(
         title: context.T.titleResultTaxonomicSearch,

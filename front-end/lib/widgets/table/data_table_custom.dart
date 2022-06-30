@@ -41,22 +41,18 @@ class DataTableCustom extends StatelessWidget {
             ),
             Expanded(
               child: Container(
-                margin: const EdgeInsets.only(
-                  left: 30,
-                  right: 30,
-                  top: 30,
-                  bottom: 30,
+                margin: const EdgeInsets.symmetric(
+                  horizontal: 30,
+                  vertical: 30,
                 ),
                 child: LayoutBuilder(
                   builder: (context, constraint) {
                     return Center(
-                      child: SingleChildScrollView(
-                        child: ScrollableRowsTable(
-                          columns: columns,
-                          rowsCells: rowsCells,
-                          maxHeight: constraint.maxHeight,
-                          maxWidth: constraint.maxWidth,
-                        ),
+                      child: ScrollableRowsTable(
+                        columns: columns,
+                        rowsCells: rowsCells,
+                        maxHeight: constraint.maxHeight,
+                        maxWidth: constraint.maxWidth,
                       ),
                     );
                   },

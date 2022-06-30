@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:front_end/bloc/searchs/searchs_bloc.dart';
@@ -46,6 +47,7 @@ class _AppTaxonHubState extends State<AppTaxonHub> {
         opacity: animation,
         child: child,
       ),
+      scrollBehavior: ScrollBehaviorCustom(),
       debugShowCheckedModeBanner: false,
       transitionDuration: const Duration(milliseconds: 50),
       onGenerateTitle: (context) => context.T.title,
@@ -73,4 +75,13 @@ class _AppTaxonHubState extends State<AppTaxonHub> {
       ],
     );
   }
+}
+
+class ScrollBehaviorCustom extends MaterialScrollBehavior {
+  @override
+  Set<PointerDeviceKind> get dragDevices => {
+        PointerDeviceKind.touch,
+        PointerDeviceKind.mouse,
+        PointerDeviceKind.trackpad,
+      };
 }
