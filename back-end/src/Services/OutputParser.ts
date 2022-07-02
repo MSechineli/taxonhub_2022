@@ -1,3 +1,5 @@
+import { Logger } from '../Logger/Logger'
+
 enum Database {
   FDB = 'FDB',
   TPL = 'TPL',
@@ -28,6 +30,10 @@ interface LineOcorrencia {
 
 export class OutputParser {
   parseOutputFloraDoBrasil(data: any): LineTaxon[] {
+    const logger = new Logger().logger();
+
+    logger.info('Iniciando o parser dos dados obtidos no Flora do Brasil');
+
     var lines: LineTaxon[] = [];
 
     for (var i = 0; i < data.result.length; i++) {
@@ -120,6 +126,7 @@ export class OutputParser {
       }
     }
 
+    logger.info('Retornando os dados obtidos no Flora do Brasil');
     return lines;
   }
 
