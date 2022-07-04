@@ -1,4 +1,4 @@
-import { createLogger, format, transports } from 'winston';
+import { createLogger, format, transports } from 'winston'
 
 export class Logger {
   logger() {
@@ -12,23 +12,22 @@ export class Logger {
             format.json(),
             format.printf(({ timestamp, level, message }) => {
               return `[${timestamp}] ${level}: ${message}`
-            })
-          )
+            }),
+          ),
         }),
         new transports.File({
-          filename: 'src/logs/info.log',
-          level: 'info',
+          filename: 'src/logs/logs.log',
           format: format.combine(
             format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
             format.json(),
             format.printf(({ timestamp, level, message }) => {
               return `[${timestamp}] ${level}: ${message}`
-            })
-          )
-        })
-      ]
-    });
+            }),
+          ),
+        }),
+      ],
+    })
 
-    return logger;
+    return logger
   }
 }
