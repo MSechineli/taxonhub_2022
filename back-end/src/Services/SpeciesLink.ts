@@ -10,6 +10,7 @@ export class SpeciesLink {
         Scientificname: especies,
         Format: 'JSON',
       })
+      console.log(dadosSpeciesLink)
 
       logger.info('Sucesso na busca de especies no SpeciesLink')
 
